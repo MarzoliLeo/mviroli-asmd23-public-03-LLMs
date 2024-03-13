@@ -1,4 +1,4 @@
-# **Lab 03 - Application of LLM is Software Engineering. **
+# Lab 03 - Application of LLM is Software Engineering.
 ## Leggenda:
 Per facilitare la lettura si userà la seguente nomenclatura per i vari LLMs affrontati: 
 * GTP: ChatGPT 3.5
@@ -14,13 +14,13 @@ C: Brutto. \
 L: Nuvoloso. \
 O: Pioverà.
 
-## **Task 1: CODE GENERATION **
+## Task 1: CODE GENERATION
 **Goal**: evaluate the effectiveness of various LLMs in generating solutions for OOP exam from previous years.
 **Task**: utilize multiple LLMs (such as ChatGPT, GitHub Copilot, and Codex) to attempt solving past OOP exam questions. Assess which models deliver accurate solutions and document
 any modifications you apply to enhance the models’ responses.
 **Additional Task**: experiment with different prompting strategies (e.g., zero-shot, few-shot) to understand their impact on solutions
 
-## **Task 1: Implementazione. **
+## Task 1: Implementazione.
 Come caso d'uso ho voluto prendere la soluzione `a01a.e2` al seguente [repo](https://bitbucket.org/mviroli/workspace/repositories/) che ha la seguente specifica:
 ```txt
 Scopo di questo esercizio è realizzare una GUI con l'aspetto mostrato nell'immagine fig1.png, fornita, 
@@ -54,7 +54,8 @@ A questo punto, la prima domanda è stata:
 
 > Given the context I've provided you, can you implement every point?
 
-GPT: ``` To implement the requirements, we need to make several modifications to the provided code. Below is the modified code with comments explaining the changes: package a01a.e2;
+GPT: 
+``` To implement the requirements, we need to make several modifications to the provided code. Below is the modified code with comments explaining the changes: package a01a.e2;
 
 import javax.swing.*;
 import java.awt.*;
