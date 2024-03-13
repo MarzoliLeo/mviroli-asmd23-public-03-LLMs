@@ -165,10 +165,14 @@ public class GUI extends JFrame {
 
 Ciò che sale subito all'occhio nella soluzione fornita è il fatto che GPT predilige sempre a unificare la soluzione ad un unico file evitando quelli che sono i buon principi di mantenimento del codice. Questo può essere ovviato chiedendo esplicitamente la suddivisione in classi. La soluzione fornita non è ottimale in quanto presenta diversi problemi evidenti:
 1. La GUI non è come dovrebbe essere, infatti questo è l'aspetto che essa assume facendo eseguire il codice generato.
-[!image_of_the_grid](./img/grid.png)
-2. Posso numerare infinite celle purché queste siano di distanza adeguata, ma quando ne numero una adiacente azzera quelle precedenti (simulando un Game Over) e inserisce uno zero nella nuova cella selezionata e le celle non si muovono mai perciò non rispetta interamente i requirements funzionali richiesti.
-[!image_of_the_grid_playing](./img/grid_playing.png)
-[!image_of_the_grid_playing](./img/grid_game_over.png)
+<p align="center">
+  <img width="60%" height="60%" src="./img/grid.png" alt = "image_of_the_grid" />
+</p>
+3. Posso numerare infinite celle purché queste siano di distanza adeguata, ma quando ne numero una adiacente azzera quelle precedenti (simulando un Game Over) e inserisce uno zero nella nuova cella selezionata e le celle non si muovono mai perciò non rispetta interamente i requirements funzionali richiesti.
+<p align="center">
+  <img width="50%" height="50%" src="./img/grid_playing.png" alt = "image_of_the_grid_playing" />
+  <img width="50%" height="50%" src="./img/grid_game_over.png" alt = "image_of_the_grid_ending" />
+</p>
 
 C: Brutto. \
 L: Nuvoloso. \
