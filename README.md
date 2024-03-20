@@ -55,114 +55,7 @@ A questo punto, la prima domanda è stata:
 
 > Given the context I've provided you, can you implement every point?
 
-GPT: 
-``` To implement the requirements, we need to make several modifications to the provided code. Below is the modified code with comments explaining the changes: package a01a.e2;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
-public class GUI extends JFrame {
-
-    private static final long serialVersionUID = -6218820567019985015L;
-    private final List<JButton> cells = new ArrayList<>();
-    private final List<Pair<Integer, Integer>> selectedCells = new ArrayList<>(); // To store selected cells
-
-    public GUI(int size) {
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(100 * size, 100 * size);
-
-        JPanel panel = new JPanel(new GridLayout(size, size));
-        this.getContentPane().add(panel);
-
-        ActionListener al = e -> {
-            var jb = (JButton) e.getSource();
-            handleCellClick(jb);
-        };
-
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                var pos = new Pair<>(j, i);
-                final JButton jb = new JButton(pos.toString());
-                this.cells.add(jb);
-                jb.addActionListener(al);
-                panel.add(jb);
-            }
-        }
-        this.setVisible(true);
-    }
-
-    // Method to handle cell click
-    private void handleCellClick(JButton clickedButton) {
-        int index = cells.indexOf(clickedButton);
-        Pair<Integer, Integer> clickedPos = new Pair<>(index % 10, index / 10);
-
-        // Check if the clicked cell is adjacent to a numbered cell
-        if (isAdjacentToNumberedCell(clickedPos)) {
-            moveNumberedCells(); // Move all numbered cells to the top-right
-        }
-
-        // Update the selected cells and number them
-        selectedCells.add(clickedPos);
-        updateCellNumbers();
-        
-        // Check if the selected cells exceed the grid boundaries
-        if (!areCellsWithinBounds()) {
-            JOptionPane.showMessageDialog(this, "Game Over");
-            System.exit(0);
-        }
-    }
-
-    // Method to check if the clicked cell is adjacent to a numbered cell
-    private boolean isAdjacentToNumberedCell(Pair<Integer, Integer> clickedPos) {
-        for (Pair<Integer, Integer> pos : selectedCells) {
-            if (Math.abs(pos.getX() - clickedPos.getX()) <= 1 && Math.abs(pos.getY() - clickedPos.getY()) <= 1) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Method to move all numbered cells to the top-right
-    private void moveNumberedCells() {
-        for (JButton cell : cells) {
-            int index = cells.indexOf(cell);
-            Pair<Integer, Integer> pos = new Pair<>(index % 10, index / 10);
-            if (selectedCells.contains(pos)) {
-                cell.setText(""); // Clear the text of the numbered cells
-            }
-        }
-        selectedCells.clear(); // Clear the selected cells list
-    }
-
-    // Method to update cell numbers
-    private void updateCellNumbers() {
-        int count = 0;
-        for (Pair<Integer, Integer> pos : selectedCells) {
-            int index = pos.getX() + pos.getY() * 10;
-            cells.get(index).setText(String.valueOf(count));
-            count++;
-        }
-    }
-
-    // Method to check if selected cells are within grid boundaries
-    private boolean areCellsWithinBounds() {
-        for (Pair<Integer, Integer> pos : selectedCells) {
-            if (pos.getX() >= 10 || pos.getY() >= 10) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static void main(String[] args) throws java.io.IOException {
-        new GUI(10);
-    }
-}
-```
+GPT: [solution](src/MyTestLLM.java)
 
 Ciò che sale subito all'occhio nella soluzione fornita è il fatto che GPT predilige sempre a unificare la soluzione ad un unico file evitando quelli che sono i buon principi di mantenimento del codice. Questo può essere ovviato chiedendo esplicitamente la suddivisione in classi. La soluzione fornita non è ottimale in quanto presenta diversi problemi evidenti:
 1. La GUI non è come dovrebbe essere, infatti questo è l'aspetto che essa assume facendo eseguire il codice generato.
@@ -175,7 +68,19 @@ Ciò che sale subito all'occhio nella soluzione fornita è il fatto che GPT pred
   <img width="50%" height="50%" src="./img/grid_game_over.png" alt = "image_of_the_grid_ending" />
 </p>
 
-C: Brutto. \
+GPT ignora totalmente nella richiesta ciò che si chiede in maniera opzionale, o gli si chiede di implementarlo oppure non lo considera.
+
+C: [solution](src/MyTestCopilot.java) 
+
+Implementare una soluzione in Copilot è stato molto più difficile rispetto GPT, siccome la dimensione del prompt e il numero di caratteri per effettuare le richieste è nettamente inferiore
+La soluzione fornita da Copilot è peggiore rispetto a quella di ChatGPT. Questo oltre a riprendere le problematiche che GPT aveva inserito nella sua soluzione, ne ha pure aggiunte di nuove:
+1. La GUI appare esattamente come fornita nella soluzione fornita da GPT.
+2. Il funzionamento è migliorato perché prima i numeri si azzeravano senza nemmeno muoversi nella direzione corretta, anche se  adesso le celle a livello di GUI non vengono azzerate. Il GameOver non viene mai considerato, l'applicazione continua all'infinito.
+<p align="center">
+  <img width="50%" height="50%" src="./img/gridC_playing.png" alt = "image_of_the_gridC_playing" />
+</p>
+
+\
 L: Nuvoloso. \
 O: Pioverà.
 
