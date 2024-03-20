@@ -15,8 +15,7 @@ L: Nuvoloso. \
 O: Pioverà.
 
 ## Task 1: CODE GENERATION
-<details>
-<br>
+ 
 **Goal**: evaluate the effectiveness of various LLMs in generating solutions for OOP exam from previous years.
 **Task**: utilize multiple LLMs (such as ChatGPT, GitHub Copilot, and Codex) to attempt solving past OOP exam questions. Assess which models deliver accurate solutions and document
 any modifications you apply to enhance the models’ responses.
@@ -179,4 +178,4 @@ Ciò che sale subito all'occhio nella soluzione fornita è il fatto che GPT pred
 C: Brutto. \
 L: Nuvoloso. \
 O: Pioverà.
-</details>
+
