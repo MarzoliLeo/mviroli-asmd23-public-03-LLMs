@@ -1,18 +1,16 @@
 # Lab 03 - Application of LLM is Software Engineering.
-## Leggenda:
+## Legenda:
 Per facilitare la lettura si userà la seguente nomenclatura per i vari LLMs affrontati: 
 * GTP: ChatGPT 3.5
 * C: Copilot
-* L: LangChain
-* O: Ollama
+* CX: Codex
 
 Quando viene riportata la domanda fatta da me nel prompt dei vari LLM questa viene evidenziata tramite una sezione apposita e appare nel seguente formato, per esempio:
 > Che tempo fa oggi?
 
 GPT: Bello. \
 C: Brutto. \
-L: Nuvoloso. \
-O: Pioverà.
+CX: Nuvoloso.
 
 ## Task 1: CODE GENERATION
  
@@ -51,7 +49,7 @@ Dunque, come primo passo ho fornito questo contesto ai vari LLM, altrimenti non 
 > [!NOTE]  
 > Poiché in ogni caso gli LLM capaci di tradurre in altre lingue effettuano internamente una conversione in inglese, per questioni di performance e riduzione di ambiguità delle parole si è scelto di scrivere direttamente in questa lingua.
 
-A questo punto, la prima domanda è stata: 
+A questo punto, la prima domanda basata su una tecnica "zero-shot": 
 
 > Given the context I've provided you, can you implement every point?
 
@@ -81,6 +79,6 @@ La soluzione fornita da Copilot è peggiore rispetto a quella di ChatGPT. Questo
 </p>
 
 \
-L: Nuvoloso. \
-O: Pioverà.
+
+CX: 
 
