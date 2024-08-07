@@ -3,14 +3,14 @@
 Per facilitare la lettura si userà la seguente nomenclatura per i vari LLMs affrontati: 
 * GTP: ChatGPT 3.5
 * C: Copilot
-* CX: Codex
+* O: Ollama Model - Llama 3.3.1
 
 Quando viene riportata la domanda fatta da me nel prompt dei vari LLM questa viene evidenziata tramite una sezione apposita e appare nel seguente formato, per esempio:
 > Che tempo fa oggi?
 
 GPT: Bello. \
 C: Brutto. \
-CX: Nuvoloso.
+O: Nuvoloso.
 
 ## Task 1: CODE GENERATION
  
@@ -80,5 +80,22 @@ La soluzione fornita da Copilot è peggiore rispetto a quella di ChatGPT. Questo
 
 \
 
-CX: 
+O: [solution](src/MyTestOllama3_1.java)
+
+Rispetto gli altri modelli ha fatto molta fatica a fonire un codice di output sulla base dell'input fornito. Inoltre, essendo un prompt gestito da terminale windows esso per ogni riga fornita rielabora la risposta e la riadatta sulla base delle nuove informazioni,
+essendo già di per sè molto lento nella generazione del codice, dunque si deve considerare bene cosa fornire in input. 
+
+Il codice fornito rispetto gli altri inizialmente non era nemmeno eseguibile, dunque totalmente inutilizzabile. Facendo diversi tentativi e raffinamenti la versione finale è comunque molto diversa da ciò che ci si aspetterebbe dalla specifica.
+
+1. Rispetto gli altri modelli l'aspetto della GUI non è quello rappresentato dall'immagine a momento di specifica.
+2. Lo scorrimento dei numeri avviene solo nelle posizioni centrali mentre se si raggiungono gli angoli essi non scorrono, ne fanno terminare il gioco.
+3. Il gioco termina solo se il numero di elementi inseriti nella griglia è pari a 10 e non chiude la finestra GUI.
+
+Di seguito si riporta il funzionamento visivo del gioco generato tramite il modello llama3.1: 
+<p align="center">
+  <img width="50%" height="50%" src="./img/InitialStateLLM.png" alt = "InitialStateLLM" />
+  <img width="50%" height="50%" src="./img/StepAfterMoveLLM.png" alt = "StepAfterMoveLLM" />
+  <img width="50%" height="50%" src="./img/StepFinaleLLM.png" alt = "StepFinaleLLM" />
+  <img width="50%" height="50%" src="./img/ErroreLLM.png" alt = "ErroreLLM" />
+</p>
 
