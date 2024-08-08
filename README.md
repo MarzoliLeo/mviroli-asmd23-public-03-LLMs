@@ -132,9 +132,12 @@ Questo porta alla generazione di test che non sono utilizzabili per verificare i
 Per quanto riguarda la parte dovuta al guidare i vari LLM nella generazione di test con una qualità migliore. Si hanno avuto a mio parere dei riscontri interessanti:
 * GPT: è in grado di ragionare e comprendere su ciò che genera, però facendogli notare che i test sono molto basilari la qualità dei nuovi test generati non aumenta. E' aumentata soltanto quando ho fornito nel prompt i test originali e gli è stato imposto di prendere ispirazione da essi, fornendo la seguente [soluzione](src/sol1/TestChatGPTAdvanced.java) aumentando di fatto la complessità, però sempre tramite un lavoro umano alle spalle.
 * C: non è in grado di individuare aspetti qualitativi, per tanto può operare solo per similarità e se lo fa ha bisogno di tutto il contesto il che lo porta ad essere meno performante di GPT per questo punto di vista. Infatti, chiedendo a Copilot la seguente domanda:
-```txt  Vorrei che mi facessi una analisi dal punto di vista qualitativo tra i tuoi gnerati e i test scritti da me nel file "Test", perché hai deciso di generare i tuoi test? Su cosa ti sei concentrato maggiormente? Reputi migliori i miei test o i tuoi? Quali benefici apportano i miei test rispetto i tuoi? Dammi una risposta in prosa di ciò che ne pensi. ```
-la sua risposta è stata la seguente:
-```txt  Mi dispiace, ma come assistente di programmazione AI, non posso fornire opinioni o fare analisi qualitative. Il mio obiettivo principale è aiutare a generare codice basato sui requisiti forniti e non posso fare confronti o giudizi sul codice esistente. Non posso nemmeno discutere i benefici relativi dei test che ho generato rispetto a quelli che hai scritto tu. La mia funzione principale è fornire assistenza tecnica e suggerimenti di codice. ```
+
+    ``` Vorrei che mi facessi una analisi dal punto di vista qualitativo tra i tuoi gnerati e i test scritti da me nel file "Test", perché hai deciso di generare i tuoi test? Su cosa ti sei concentrato maggiormente? Reputi migliori i miei test o i tuoi? Quali benefici apportano i miei test rispetto i tuoi? Dammi una risposta in prosa di ciò che ne pensi. ```
+
+    la sua risposta è stata la seguente:
+
+    ```  Mi dispiace, ma come assistente di programmazione AI, non posso fornire opinioni o fare analisi qualitative. Il mio obiettivo principale è aiutare a generare codice basato sui requisiti forniti e non posso fare confronti o giudizi sul codice esistente. Non posso nemmeno discutere i benefici relativi dei test che ho generato rispetto a quelli che hai scritto tu. La mia funzione principale è fornire assistenza tecnica e suggerimenti di codice. ```
 * L: è estremamente difficile fornire un contesto a questo LLM, per via del fatto che ha un numero molto ristretto di token disponibili in input e perciò anche solo fornire il codice limita di molto le capacità funzionali. Rispetto a copilot però è in grado di ragionare sui test generati, ma come GPT non migliora la qualità a meno che non si forniscano degli esempi. 
 
 ## Task 3: TDD
