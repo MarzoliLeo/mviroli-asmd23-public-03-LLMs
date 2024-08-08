@@ -3,14 +3,14 @@
 Per facilitare la lettura si userà la seguente nomenclatura per i vari LLMs affrontati: 
 * GTP: ChatGPT 3.5
 * C: Copilot
-* O: Ollama Model - Llama 3.3.1
+* L: Ollama Model - Llama 3.1
 
 Quando viene riportata la domanda fatta da me nel prompt dei vari LLM questa viene evidenziata tramite una sezione apposita e appare nel seguente formato, per esempio:
 > Che tempo fa oggi?
 
 GPT: Bello. \
 C: Brutto. \
-O: Nuvoloso.
+L: Nuvoloso.
 
 ## Task 1: CODE GENERATION
  
@@ -80,7 +80,7 @@ La soluzione fornita da Copilot è peggiore rispetto a quella di ChatGPT. Questo
 
 \
 
-O: [solution](src/MyTestOllama3_1.java)
+L: [solution](src/MyTestOllama3_1.java)
 
 Rispetto gli altri modelli ha fatto molta fatica a fonire un codice di output sulla base dell'input fornito. Inoltre, essendo un prompt gestito da terminale windows esso per ogni riga fornita rielabora la risposta e la riadatta sulla base delle nuove informazioni,
 essendo già di per sè molto lento nella generazione del codice, dunque si deve considerare bene cosa fornire in input. 
@@ -121,7 +121,12 @@ Il primo LLM che si è voluto utilizzare per questo task è ChatGPT la soluzione
 Il secondo LLM analizzato è Copilot che ha fornito la seguente [soluzione](src/sol1/TestCopilot.java). 
 Ciò che si può dedurre dalla soluzione generata è che grosso modo a parte la struttura particolare che esso ha dato alla nuova suite di test, posizionando tutto dentro un @BeforeEach, ripetendo così ciascun test ogni volta. L'implementazione dei test è rimasta molto simile a quella fatta da ChatGPT. Addirittura ha scelto di utilizzare gli stessi esempi numerici.
 
-#TODO QUI CI ANDRA' LLAMA3.1
+Il terzo LLM è il modello Llama3.1 e qui viene riportata la sua [soluzione](src/sol1/TestLlama3_1.java).
+Come si poteva già dedurre dagli esiti del task 1, il modello risulta sempre il meno performante rispetto gli altri due. Non a caso la soluzione da esso fornita comprende più della metà dei test che non funzionano come dovrebbero. Infatti:
+* testCumulateToList: L'errore indica che il metodo "cumulateToList" non sta raggruppando correttamente gli elementi della lista. Il risultato atteso era [[1, 2, 3], [4, 5, 6]], ma il risultato effettivo era [[1, 2, 3, 4], [5, 6]].
+* testTripletsToSum: L'errore indica che il metodo "tripletsToSum" non sta sommando correttamente i triplet di numeri. Il risultato atteso era [60, 120], ma il risultato effettivo era [60, 90].
+* testCountUntilZero: L'errore indica che il metodo "countUntilZero" sta contando un numero in più di elementi prima di incontrare uno zero. Il risultato atteso era [2, 2], ma il risultato effettivo era [2, 2, 3].
+Questo porta alla generazione di test che non sono utilizzabili per verificare il comportamento del software, rendendo automaticamente molto migliori quelli originali.
 
 
 Per quanto riguarda la parte dovuta al guidare i vari LLM nella generazione di test con una qualità migliore. Si hanno avuto a mio parere dei riscontri interessanti:
@@ -130,5 +135,11 @@ Per quanto riguarda la parte dovuta al guidare i vari LLM nella generazione di t
 ```txt  Vorrei che mi facessi una analisi dal punto di vista qualitativo tra i tuoi gnerati e i test scritti da me nel file "Test", perché hai deciso di generare i tuoi test? Su cosa ti sei concentrato maggiormente? Reputi migliori i miei test o i tuoi? Quali benefici apportano i miei test rispetto i tuoi? Dammi una risposta in prosa di ciò che ne pensi. ```
 la sua risposta è stata la seguente:
 ```txt  Mi dispiace, ma come assistente di programmazione AI, non posso fornire opinioni o fare analisi qualitative. Il mio obiettivo principale è aiutare a generare codice basato sui requisiti forniti e non posso fare confronti o giudizi sul codice esistente. Non posso nemmeno discutere i benefici relativi dei test che ho generato rispetto a quelli che hai scritto tu. La mia funzione principale è fornire assistenza tecnica e suggerimenti di codice. ```
-* 
+* L: è estremamente difficile fornire un contesto a questo LLM, per via del fatto che ha un numero molto ristretto di token disponibili in input e perciò anche solo fornire il codice limita di molto le capacità funzionali. Rispetto a copilot però è in grado di ragionare sui test generati, ma come GPT non migliora la qualità a meno che non si forniscano degli esempi. 
 
+## Task 3: TDD
+Goal: investigate the effectiveness of Copilot in a Test-Driven Development (TDD) scenario.
+Task: apply TDD principles to solve a given a PPS exercise (https://github.com/unibo-pps/pps-23-24-lab01b, exercise 2) using an LLM (you can use both Java or Scala to
+implement it). Assess whether incremental steps and test-first development aid the LLM in generating correct code solutions.
+
+## Task 3: Implementazione.
