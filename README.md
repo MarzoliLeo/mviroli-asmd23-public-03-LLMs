@@ -20,7 +20,7 @@ any modifications you apply to enhance the models’ responses.
 **Additional Task**: experiment with different prompting strategies (e.g., zero-shot, few-shot) to understand their impact on solutions
 
 ## Task 1: Implementazione.
-Come caso d'uso ho voluto prendere la soluzione `a01a.e2` al seguente [repo](https://bitbucket.org/mviroli/workspace/repositories/) che ha la seguente specifica:
+Come caso d'uso ho voluto prendere la soluzione `a01a.e2` (2023) al seguente [repo](https://bitbucket.org/mviroli/workspace/repositories/) che ha la seguente specifica:
 ```txt
 Scopo di questo esercizio è realizzare una GUI con l'aspetto mostrato nell'immagine fig1.png, fornita, 
 che realizza la possibilità di selezionare un insieme di celle non contigue, per poi farle traslare
@@ -109,3 +109,5 @@ Di seguito si riporta il funzionamento visivo del gioco generato tramite il mode
 to guide the LLMs to generate tests that are more effective and efficient
 
 ## Task 2: Implementazione.
+
+Come caso d'uso ho voluto prendere la soluzione `a01a.e1` (2023) al seguente [repo](https://bitbucket.org/mviroli/workspace/repositories/) che ha la seguente specifica:
