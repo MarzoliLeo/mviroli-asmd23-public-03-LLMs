@@ -90,5 +90,6 @@ public class Test {
 		// la sottosequenza viene data in uscita
 		assertEquals(List.of(List.of(10,50,70), List.of(80,20), List.of(30,30,39,30), List.of(40)), 
 			sc.combine(List.of(10,50,70,80,20,30,30,39,30,40)));
-	}		
+	}
+
 }

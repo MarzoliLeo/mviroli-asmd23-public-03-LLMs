@@ -110,4 +110,25 @@ to guide the LLMs to generate tests that are more effective and efficient
 
 ## Task 2: Implementazione.
 
-Come caso d'uso ho voluto prendere la soluzione `a01a.e1` (2023) al seguente [repo](https://bitbucket.org/mviroli/workspace/repositories/) che ha la seguente specifica:
+Come caso d'uso ho voluto prendere la soluzione `a01a.e1` (2023) al seguente [repo](https://bitbucket.org/mviroli/workspace/repositories/):
+
+Il primo LLM che si è voluto utilizzare per questo task è ChatGPT la soluzione da lui riportata è stata la seguente [soluzione](src/sol1/TestChatGPT.java). Dovendola analizzare nel dettaglio dal punto di vista qualitativo sono giunto alle seguenti conclusioni:
+1. **Comprensione delle Specifiche**: I test originali sembrano essere costruiti con una chiara comprensione delle specifiche dettagliate di ciascuna funzione. Ad esempio, nel test __testTripletsToSum__, si verifica l'effettiva somma dei tripli e si gestisce correttamente la parte finale della lista se ci sono meno di tre elementi, riflettendo un caso d'uso reale. Questo dimostra una comprensione accurata del comportamento delle funzioni in condizioni realistiche. Mentre i test generati, invece, sono stati scritti con un focus più basilare e generale, per coprire i casi più comuni senza entrare troppo nei dettagli di casi limite o situazioni specifiche. Ad esempio, nel test __testTripletsToSum__, si è concentrato sulla verifica della somma dei tripli senza considerare completamente come gestire l’ultimo gruppo di elementi rimanenti.
+2. **Focus sui Casi Limite e Complessità**: Nell'originale si è affrontato casi limite e situazioni specifiche che sono cruciali per verificare la robustezza del codice. Ad esempio, nel test __testCountUntilZero__, si sono scelti input che verificano il comportamento della funzione in presenza di più zeri e in varie posizioni della lista. Questo garantisce che il codice sia testato in modo esaustivo e non fallisca in situazioni meno comuni. Nei test generati sono stati più orientati a coprire i casi standard, come suddivisioni semplici di sequenze o trasformazioni di elementi. Questo approccio è utile per verificare il funzionamento di base, ma potrebbe non catturare tutti i dettagli necessari per garantire che il codice si comporti bene in ogni situazione.
+3. **Varietà di Input e Robustezza**: Nell'originale si è scelto una gamma più ampia di input per verificare ogni funzione, incluso l’uso di numeri diversi, lunghezze di sequenze variabili e funzioni più complesse per __singleReplacer__. Questa varietà rende gli originali più robusti e significativi, poiché coprono una gamma più ampia di casi d'uso realistici. I test generati sono stati progettati con input più semplici e ripetitivi, che servono bene per verificare il funzionamento di base ma potrebbero non coprire completamente tutti i comportamenti che il codice deve gestire in un contesto reale. 
+4. **Benefici**: In conclusione i test originali rappresentato scenari più robusti e completi, ricoprendo anche maggiormente quelli che saranno i possibili scenari reali. Cosa che non si può dire per quelli generati.
+
+Il secondo LLM analizzato è Copilot che ha fornito la seguente [soluzione](src/sol1/TestCopilot.java). 
+Ciò che si può dedurre dalla soluzione generata è che grosso modo a parte la struttura particolare che esso ha dato alla nuova suite di test, posizionando tutto dentro un @BeforeEach, ripetendo così ciascun test ogni volta. L'implementazione dei test è rimasta molto simile a quella fatta da ChatGPT. Addirittura ha scelto di utilizzare gli stessi esempi numerici.
+
+#TODO QUI CI ANDRA' LLAMA3.1
+
+
+Per quanto riguarda la parte dovuta al guidare i vari LLM nella generazione di test con una qualità migliore. Si hanno avuto a mio parere dei riscontri interessanti:
+* GPT: è in grado di ragionare e comprendere su ciò che genera, però facendogli notare che i test sono molto basilari la qualità dei nuovi test generati non aumenta. E' aumentata soltanto quando ho fornito nel prompt i test originali e gli è stato imposto di prendere ispirazione da essi, fornendo la seguente [soluzione](src/sol1/TestChatGPTAdvanced.java) aumentando di fatto la complessità, però sempre tramite un lavoro umano alle spalle.
+* C: non è in grado di individuare aspetti qualitativi, per tanto può operare solo per similarità e se lo fa ha bisogno di tutto il contesto il che lo porta ad essere meno performante di GPT per questo punto di vista. Infatti, chiedendo a Copilot la seguente domanda:
+```txt  Vorrei che mi facessi una analisi dal punto di vista qualitativo tra i tuoi gnerati e i test scritti da me nel file "Test", perché hai deciso di generare i tuoi test? Su cosa ti sei concentrato maggiormente? Reputi migliori i miei test o i tuoi? Quali benefici apportano i miei test rispetto i tuoi? Dammi una risposta in prosa di ciò che ne pensi. ```
+la sua risposta è stata la seguente:
+```txt  Mi dispiace, ma come assistente di programmazione AI, non posso fornire opinioni o fare analisi qualitative. Il mio obiettivo principale è aiutare a generare codice basato sui requisiti forniti e non posso fare confronti o giudizi sul codice esistente. Non posso nemmeno discutere i benefici relativi dei test che ho generato rispetto a quelli che hai scritto tu. La mia funzione principale è fornire assistenza tecnica e suggerimenti di codice. ```
+* 
+
