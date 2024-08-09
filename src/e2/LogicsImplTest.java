@@ -39,4 +39,25 @@ public class LogicsImplTest {
         logics.click(mineCell);
         assertTrue(logics.isGameOver());
     }
+
+    @Test
+    public void testClickEmptyCell() {
+        Logics logics = new LogicsImpl(10);
+        logics.placeMines(20);
+        Pair<Integer, Integer> emptyCell = null;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Pair<Integer, Integer> cell = new Pair<>(i, j);
+                if (!logics.isMine(cell)) {
+                    emptyCell = cell;
+                    break;
+                }
+            }
+            if (emptyCell != null) {
+                break;
+            }
+        }
+        logics.click(emptyCell);
+        assertTrue(logics.isDisabled(emptyCell));
+    }
 }

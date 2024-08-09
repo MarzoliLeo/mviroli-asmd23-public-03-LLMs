@@ -5,4 +5,6 @@ public interface Logics {
     boolean isMine(Pair<Integer, Integer> cell);
     void click(Pair<Integer, Integer> cell);
     boolean isGameOver();
+    boolean isDisabled(Pair<Integer, Integer> cell);
+    int getAdjacentMines(Pair<Integer, Integer> cell);
 }
