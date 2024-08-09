@@ -36,6 +36,9 @@ public class LogicsImpl implements Logics {
             return -1;
         } else {
             disabledCells.add(cell);
+            if (getAdjacentMines(cell) == 0) {
+                autoClick(cell);
+            }
             return getAdjacentMines(cell);
         }
     }
@@ -64,5 +67,20 @@ public class LogicsImpl implements Logics {
             }
         }
         return count;
+    }
+
+    @Override
+    public void autoClick(Pair<Integer, Integer> cell) {
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                if (dx == 0 && dy == 0) continue;
+                int x = cell.getX() + dx;
+                int y = cell.getY() + dy;
+                Pair<Integer, Integer> adjacentCell = new Pair<>(x, y);
+                if (x >= 0 && x < size && y >= 0 && y < size && !isMine(adjacentCell) && !isDisabled(adjacentCell)) {
+                    click(adjacentCell);
+                }
+            }
+        }
     }
 }

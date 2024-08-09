@@ -7,4 +7,5 @@ public interface Logics {
     boolean isGameOver();
     boolean isDisabled(Pair<Integer, Integer> cell);
     int getAdjacentMines(Pair<Integer, Integer> cell);
+    void autoClick(Pair<Integer, Integer> cell);
 }

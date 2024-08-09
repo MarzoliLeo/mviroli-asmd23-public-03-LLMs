@@ -81,4 +81,35 @@ public class LogicsImplTest {
         int adjacentMines = logics.click(emptyCell);
         assertEquals(logics.getAdjacentMines(emptyCell), adjacentMines);
     }
+
+    @Test
+    public void testAutoClick() {
+        Logics logics = new LogicsImpl(10);
+        logics.placeMines(20);
+        Pair<Integer, Integer> emptyCell = null;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                Pair<Integer, Integer> cell = new Pair<>(i, j);
+                if (!logics.isMine(cell) && logics.getAdjacentMines(cell) == 0) {
+                    emptyCell = cell;
+                    break;
+                }
+            }
+            if (emptyCell != null) {
+                break;
+            }
+        }
+        logics.click(emptyCell);
+        for (int dx = -1; dx <= 1; dx++) {
+            for (int dy = -1; dy <= 1; dy++) {
+                if (dx == 0 && dy == 0) continue;
+                int x = emptyCell.getX() + dx;
+                int y = emptyCell.getY() + dy;
+                Pair<Integer, Integer> adjacentCell = new Pair<>(x, y);
+                if (x >= 0 && x < 10 && y >= 0 && y < 10 && !logics.isMine(adjacentCell)) {
+                    assertTrue(logics.isDisabled(adjacentCell));
+                }
+            }
+        }
+    }
 }
