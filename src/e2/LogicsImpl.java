@@ -30,11 +30,13 @@ public class LogicsImpl implements Logics {
     }
 
     @Override
-    public void click(Pair<Integer, Integer> cell) {
+    public int click(Pair<Integer, Integer> cell) {
         if (isMine(cell)) {
             gameOver = true;
+            return -1;
         } else {
             disabledCells.add(cell);
+            return getAdjacentMines(cell);
         }
     }
 
