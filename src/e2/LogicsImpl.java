@@ -7,6 +7,7 @@ import java.util.Set;
 public class LogicsImpl implements Logics {
     private final int size;
     private final Set<Pair<Integer, Integer>> mines = new HashSet<>();
+    private boolean gameOver = false;
 
     public LogicsImpl(int size) {
         this.size = size;
@@ -25,5 +26,17 @@ public class LogicsImpl implements Logics {
     @Override
     public boolean isMine(Pair<Integer, Integer> cell) {
         return mines.contains(cell);
+    }
+
+    @Override
+    public void click(Pair<Integer, Integer> cell) {
+        if (isMine(cell)) {
+            gameOver = true;
+        }
+    }
+
+    @Override
+    public boolean isGameOver() {
+        return gameOver;
     }
 }
