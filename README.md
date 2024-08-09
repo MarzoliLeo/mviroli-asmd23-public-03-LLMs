@@ -146,3 +146,11 @@ Task: apply TDD principles to solve a given a PPS exercise (https://github.com/u
 implement it). Assess whether incremental steps and test-first development aid the LLM in generating correct code solutions.
 
 ## Task 3: Implementazione.
+
+Si è utilizzato Copilot per lo sviluppo dell'[esercizio](https://github.com/unibo-pps/pps-23-24-lab01b/tree/master)  indicato all'interno del task. Si è iniziato fornendo il contesto a copilot esso poi è stato in grado step per step di applicare perfettamente la metodologia TDD. Imponendogli di generare dei test alla volta sulla base delle funzionalità sviluppate singolarmente è molto più preciso e corretto nel generare una soluzione.
+E' possibile vedere anche tramite i commit, che il tempo tra ciascun commit è stato relativamente molto piccolo, questo perché i test sviluppati erano concisi ed efficienti. L'integrazione delle funzionalità testate è sta in fine collegata alla GUI dimostrandosi effettivamente corretta.
+Di seguito riporto l'esito dei vari test, come dimostrazione della loro compilazione.
+<figure align="center">
+  <img width="100%" height="100%" src="./img/TestPassingLLMs.png" alt = "TestPassingLLMs" />
+    <figcaption>Lista dei test generati da Copilot.</figcaption>
+</figure>

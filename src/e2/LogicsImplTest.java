@@ -112,4 +112,15 @@ public class LogicsImplTest {
             }
         }
     }
+
+    @Test
+    public void testPlaceFlag() {
+        Logics logics = new LogicsImpl(10);
+        logics.placeMines(20);
+        Pair<Integer, Integer> cell = new Pair<>(0, 0);
+        logics.placeFlag(cell);
+        assertTrue(logics.isFlagged(cell));
+        logics.placeFlag(cell);
+        assertFalse(logics.isFlagged(cell));
+    }
 }

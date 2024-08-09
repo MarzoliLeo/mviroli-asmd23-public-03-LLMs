@@ -8,6 +8,7 @@ public class LogicsImpl implements Logics {
     private final int size;
     private final Set<Pair<Integer, Integer>> mines = new HashSet<>();
     private final Set<Pair<Integer, Integer>> disabledCells = new HashSet<>();
+    private final Set<Pair<Integer, Integer>> flaggedCells = new HashSet<>();
     private boolean gameOver = false;
 
     public LogicsImpl(int size) {
@@ -82,5 +83,21 @@ public class LogicsImpl implements Logics {
                 }
             }
         }
+    }
+
+    @Override
+    public void placeFlag(Pair<Integer, Integer> cell) {
+        if (!isDisabled(cell)) {
+            if (flaggedCells.contains(cell)) {
+                flaggedCells.remove(cell);
+            } else {
+                flaggedCells.add(cell);
+            }
+        }
+    }
+
+    @Override
+    public boolean isFlagged(Pair<Integer, Integer> cell) {
+        return flaggedCells.contains(cell);
     }
 }
